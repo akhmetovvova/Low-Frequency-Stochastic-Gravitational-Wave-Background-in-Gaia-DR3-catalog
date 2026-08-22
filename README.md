@@ -43,7 +43,7 @@ python gw_simulator.py \
 
 **VSH analysis**
 
-    python vsh_decomposition.py \
+python vsh_decomposition.py \
     --input gw_simulated.csv \
     --lmax 5 \
     --coefficients vsh_coefficients.csv \
