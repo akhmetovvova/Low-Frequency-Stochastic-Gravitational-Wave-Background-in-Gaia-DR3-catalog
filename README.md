@@ -26,3 +26,18 @@ The repository includes:
 - Monte Carlo injection-and-recovery simulations.
 
 The programs use Gaia DR3 quasar proper motions as input.
+
+**GW signal simulations**
+python gw_simulator.py \
+    --input Gaia_QSO.csv \
+    --output gw_plane.csv \
+    --mode plane \
+    --hc 1e-11 \
+    --frequency 5e-9 \
+    --ra-gw 45 \
+    --dec-gw 45 \
+    --psi 0 \
+    --phase 0 \
+    --seed 99999
+
+    
