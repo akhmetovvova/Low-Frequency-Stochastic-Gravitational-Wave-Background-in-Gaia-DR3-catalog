@@ -51,7 +51,15 @@ python gw_simulator.py \
 
 **HDC analysis**
 
-
+python hdc_gamma.py \
+    --input Gaia_DR3_QSO.csv \
+    --output gamma_DR3.csv \
+    --theta-min 0 \
+    --theta-max 180 \
+    --bin-width 5 \
+    --healpix \
+    --nside 50 \
+    --pair-block 100000
 
 **Monte Carlo injection-and-recovery simulations**
 
