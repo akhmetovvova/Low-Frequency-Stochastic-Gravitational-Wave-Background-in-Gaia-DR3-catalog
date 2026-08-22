@@ -28,6 +28,7 @@ The repository includes:
 The programs use Gaia DR3 quasar proper motions as input.
 
 **GW signal simulations**
+
 python gw_simulator.py \
     --input Gaia_QSO.csv \
     --output gw_plane.csv \
@@ -39,5 +40,18 @@ python gw_simulator.py \
     --psi 0 \
     --phase 0 \
     --seed 99999
+
+**VSH analysis**
+
+    python vsh_decomposition.py \
+    --input gw_simulated.csv \
+    --lmax 5 \
+    --coefficients vsh_coefficients.csv \
+    --power vsh_power.csv
+
+**HDC analysis**
+
+
+    
 
     
