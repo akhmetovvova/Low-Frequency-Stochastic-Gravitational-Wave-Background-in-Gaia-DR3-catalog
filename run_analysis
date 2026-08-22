@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+awk '{if(NR==1){printf("inj,rec,err\n") }else{ if($28<0){hrec=-sqrt(-$28)/5.94137E10}else{hrec=sqrt($28)/5.94137E10} printf("%.12E,%.12E,%.12E\n",$2,hrec,sqrt($29)/5.94137E10)} }' run_iteration.res > mc_data_HDC.csv
+
+python3 logarithmic_bins.py mc_data_HDC.csv binned_HDC.dat
+
+./plot_mc_binned binned_HDC.dat HDC_binned.png
+
+
+awk '{if(NR==1){printf("inj,rec_PT,err\n") }else{ printf("%.12E,%.12E,%.12E\n",$2,($41+$43)/2/1.878195E8,($42+$44)/2/1.878195E8)} }' run_iteration.res > mc_data_VSH.csv
+
+python3 logarithmic_bins.py mc_data_VSH.csv binned_VSH.dat
+
+./plot_mc_binned binned_VSH.dat VSH_binned.png
