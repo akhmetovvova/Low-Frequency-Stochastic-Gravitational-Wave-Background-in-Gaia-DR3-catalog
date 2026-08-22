@@ -52,6 +52,20 @@ python gw_simulator.py \
 **HDC analysis**
 
 
+
+**Monte Carlo injection-and-recovery simulations**
+
+python mc_gw_simulator.py \
+    --input Gaia_QSO.csv \
+    --hc 1e-11 \
+    --frequency 5e-9 \
+    --n-mc 1000 \
+    --seed 99999 \
+    --equal-polarization \
+    --save-catalogues \
+    --output-dir MC_1e-11
+
+
     
 
     
