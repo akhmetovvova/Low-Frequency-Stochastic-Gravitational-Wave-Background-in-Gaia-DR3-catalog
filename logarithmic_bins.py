@@ -1,4 +1,100 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+running_quantiles.py
+
+Statistical analysis of Monte Carlo injection-recovery simulations
+for the detection of a low-frequency stochastic gravitational-wave
+background using astrometric proper motions of Gaia DR3 quasars.
+
+The program analyses the recovered GW amplitudes obtained from a set
+of Monte Carlo realizations and calculates their statistical
+properties as a function of the injected GW amplitude.
+
+Input:
+    CSV file containing three columns:
+
+        injected,recovered,error
+
+    where
+
+        injected  - injected GW amplitude (strain),
+        recovered - recovered GW amplitude from the analysis,
+        error     - formal uncertainty of the recovered amplitude.
+
+    The input file does not require a header.
+
+Method:
+    The injected GW amplitudes are divided into logarithmically
+    spaced bins. For each bin the program calculates:
+
+        - number of Monte Carlo realizations;
+        - median recovered amplitude;
+        - 2.5th and 97.5th percentiles
+          (approximately the central 95% interval);
+        - 15th and 85th percentiles
+          (central 70% interval);
+        - median formal uncertainty of the recovered amplitude;
+        - median signal-to-noise ratio Z = recovered/error;
+        - fraction of realizations with recovered/error > 2;
+        - fraction of realizations with recovered/error > 3.
+
+    The median recovered amplitude and the percentile intervals
+    characterize the bias and statistical scatter of the recovered
+    GW amplitude for each injected amplitude.
+
+    The fractions
+
+        f_2sigma = N(recovered > 2 * error) / N
+        f_3sigma = N(recovered > 3 * error) / N
+
+    provide estimates of the detection probability at 2-sigma
+    and 3-sigma significance levels.
+
+Output:
+    A space-separated ASCII file containing:
+
+        inj
+        N
+        median
+        low2sig
+        up2sig
+        q15
+        q85
+        err_median
+        Z_median
+        frac2
+        frac3
+
+    where:
+
+        inj        - logarithmic bin centre of injected GW amplitude;
+        N          - number of MC realizations in the bin;
+        median     - median recovered amplitude;
+        low2sig    - 2.5th percentile of recovered amplitudes;
+        up2sig     - 97.5th percentile of recovered amplitudes;
+        q15        - 15th percentile;
+        q85        - 85th percentile;
+        err_median - median formal uncertainty;
+        Z_median   - median recovered signal-to-noise ratio;
+        frac2      - fraction of realizations detected above 2-sigma;
+        frac3      - fraction of realizations detected above 3-sigma.
+
+Usage:
+    python3 running_quantiles.py input.csv output.dat
+
+Example:
+    python3 running_quantiles.py mc_results.csv mc_statistics.dat
+
+The resulting file can be used to construct detection-efficiency
+curves, recovered-versus-injected amplitude plots, confidence
+intervals, and Monte Carlo detection probability curves for the
+Gaia DR3 astrometric gravitational-wave analysis.
+
+Author:
+    Volodymyr Akhmetov
+"""
 
 import sys
 import numpy as np
